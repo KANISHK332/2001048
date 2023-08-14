@@ -6,11 +6,11 @@ const port = 8008;
 
 // Middleware to handle the /numbers endpoint
 app.get('/numbers', async (req, res) => {
-  const urls = req.query.url;
+  const urls = Array.isArray(req.query.url)?req.query.url:[req.query.url];
   
-  if (!urls || !Array.isArray(urls)) {
-    return res.status(400).json({ error: 'Invalid URL(s)' });
-  }
+//   if (!urls || !Array.isArray(urls)) {
+//     return res.status(400).json({ error: 'Invalid URL(s)' });
+//   }
   
   const uniqueNumbers = await getUniqueNumbersFromUrls(urls);
   
